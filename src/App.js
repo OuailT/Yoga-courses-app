@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{useState, useEffect} from "react";
+// import CoursesData from "./Data/CoursesData";
+import YogaCourses from "./components/YogaCourses/YogaCourses";
+
 
 function App() {
+  const [yogaCourses, setYogaCourses] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Welcome to our yoga courses master class</h1>
+      <YogaCourses yogaCourses= {yogaCourses}/>
     </div>
   );
 }
