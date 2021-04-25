@@ -4,7 +4,7 @@ import React,{useState, useEffect} from "react";
 import YogaCourses from "./components/YogaCourses/YogaCourses";
 
 //API
-const url = 'https://course-api.com/react-tours-project';
+const url = 'https://gist.githubusercontent.com/Tayarthouail/8fb14fe117fdd718ceabd6ee05ed4525/raw/8c86c4bb89fc51667ba0578b2dcba14a0b21f08c/Yoga-courses-api.json';
 
 
 function App() {

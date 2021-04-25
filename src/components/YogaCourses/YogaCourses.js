@@ -5,7 +5,7 @@ const YogaCourses = ({yogaCourses}) => {
     return (
         <section>
             <div className="title">
-                <h2>Welcome to our yoga courses</h2>
+                <h2>YOUR PRACTICE REIMAGINED</h2>
             </div>
         <div>
             {yogaCourses.map((yogaCourse)=> {
