@@ -1,6 +1,8 @@
-import React from 'react';
+import React,{useState} from 'react';
 
 const SingleYogaCourse = ({id, name,trainer, videoNum, level, members, info, image, price}) => {
+    
+    const [readMore, setReadMore] = useState(false);
     return(
         <section key={id} className="single-course">
             <img src={image} alt={name}/>
@@ -25,8 +27,11 @@ const SingleYogaCourse = ({id, name,trainer, videoNum, level, members, info, ima
                     <h5>{members}</h5>
                     </div>
                 </div>
-                <p>{info}
-                <button>redMore</button>
+                <p>
+                {readMore ? info : `${info.substring(0, 100)}...`}
+                <button onClick ={()=> setReadMore(!readMore)} >
+                {readMore ? "Show less" : "Show more"}
+                </button>
                 </p>
 
                 <button className="btn">Join The Course</button>
