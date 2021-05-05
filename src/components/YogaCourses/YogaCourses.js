@@ -7,7 +7,7 @@ const YogaCourses = ({yogaCourses}) => {
             <div className="title">
                 <h2>YOUR PRACTICE REIMAGINED</h2>
             </div>
-        <div>
+        <div className="grid-list">
             {yogaCourses.map((yogaCourse)=> {
                 // const {id, name, info, image, price} = yogaCourse;
                 return (
