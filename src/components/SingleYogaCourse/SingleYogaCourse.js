@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 
-const SingleYogaCourse = ({id, name,trainer, videoNum, level, members, info, image, price}) => {
+const SingleYogaCourse = ({id, name,trainer , videoNum, level, members, info, image, price}) => {
     const [readMore, setReadMore] = useState(false);
 
     const [likeCount , setLike] = useState(50);
@@ -44,6 +44,7 @@ const SingleYogaCourse = ({id, name,trainer, videoNum, level, members, info, ima
         }
     }
 
+
     return(
         <section key={id} className="single-course">
             <img src={image} alt={name}/>
@@ -55,7 +56,7 @@ const SingleYogaCourse = ({id, name,trainer, videoNum, level, members, info, ima
 
                 <div className="services">
                     <div>
-                    <i class="far fa-play-circle"></i> 
+                    <i className="far fa-play-circle"></i> 
                     <h5>{videoNum}</h5>
                     </div>
 
@@ -64,7 +65,7 @@ const SingleYogaCourse = ({id, name,trainer, videoNum, level, members, info, ima
                     </div>
 
                     <div>
-                    <i class="fas fa-user"></i> 
+                    <i className="fas fa-user"></i> 
                     <h5>{members}</h5>
                     </div>
                 </div>
