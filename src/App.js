@@ -12,13 +12,7 @@ function App() {
   //states
   const [yogaCourses, setYogaCourses] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  //getting all the level form Data
-  const allLevels = [ ...new Set(yogaCourses.map((singleLevel)=> singleLevel.level))];
   const [levels, setLevels] = useState([]);
-
-  
-
 
   //Function to fetch the data from the API
   const GetCourses = async () => {
@@ -32,16 +26,19 @@ function App() {
     const GetCoursesYoga = async () => {
       const result = await GetCourses();
       setYogaCourses(result);
-      setTimeout(() => {setIsLoading(false)}, 1000);
+      setLevels(Array.from(new Set(result.map((result)=> result.level))));
       console.log(result);
     } 
     GetCoursesYoga();
   }, []);
 
+  //check if the we got response
   useEffect(()=> {
-    setLevels(allLevels);
-  },[])
-
+    if(yogaCourses.length > 0) {
+      setIsLoading(false);
+    }
+  }, [yogaCourses])
+  
 
   if(isLoading) {
     return (
