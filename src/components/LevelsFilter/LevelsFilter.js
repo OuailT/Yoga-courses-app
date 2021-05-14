@@ -3,7 +3,7 @@ import Select from 'react-select';
 
 import './LevelsFilter.css';
 
-const LevelsFilter = ({levels}) => {
+const LevelsFilter = ({levels, onChange}) => {
     const option = levels.map((level)=> ({value : level, label: level}));
     return (
     <div>
@@ -11,6 +11,7 @@ const LevelsFilter = ({levels}) => {
         options ={option}
         className="select-option"
         placeholder={"Type..."}
+        onChange={onChange}
         />
     </div>
     )

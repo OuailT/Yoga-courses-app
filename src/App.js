@@ -1,4 +1,5 @@
 import axios from "axios";
+import ReactPaginate from 'react-paginate';
 import React,{useState, useEffect} from "react";
 import YogaCourses from "./components/YogaCourses/YogaCourses";
 import Loading from "./components/IsLoading/Loading";
@@ -13,6 +14,33 @@ function App() {
   const [yogaCourses, setYogaCourses] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [levels, setLevels] = useState([]);
+  const [level, setLevel] = useState('');
+  // const [numberPage, setNumberPage] = useEffect(0);
+
+  //Paginate react 
+  const coursePerPage = 2;
+  // const PageVisited = numberPage * coursePerPage;
+  const pageCount = Math.ceil(yogaCourses.length / coursePerPage);
+
+  //Track changes on each numberPage and display the data 
+  // useEffect(()=> {
+  //   setYogaCourses(yogaCourses.slice(numberPage * 2 , (numberPage + 1) * 2))
+  // },[numberPage])
+
+  //To the next Page
+  const pageChange = ({selected}) => {
+    setYogaCourses(selected);
+  }
+
+  //levelChangeHandler 
+  const levelChangeHandler = ({value}) => {
+      setLevel(value);
+  }
+
+  //Filter by Levels // stateless
+  const filterLevels = (level) => {
+    return yogaCourses.filter((singleLevel)=> level ? singleLevel.level === level : true);
+  }
 
   //Function to fetch the data from the API
   const GetCourses = async () => {
@@ -27,10 +55,10 @@ function App() {
       const result = await GetCourses();
       setYogaCourses(result);
       setLevels(Array.from(new Set(result.map((result)=> result.level))));
-      console.log(result);
     } 
     GetCoursesYoga();
   }, []);
+
 
   //check if the we got response
   useEffect(()=> {
@@ -48,13 +76,21 @@ function App() {
   else {
     return (
       <main>
-        <LevelsFilter levels={levels}/>
-        <YogaCourses yogaCourses= {yogaCourses}/>
+        <div className="title">
+                <h2>YOUR PRACTICE REIMAGINED</h2>
+            </div>
+        <LevelsFilter levels={levels} onChange={levelChangeHandler}/>
+        <YogaCourses yogaCourses= {filterLevels(level)}/>
+        <ReactPaginate
+        previousLabel = {"Previous"}
+        nextLabel = {"Next"}
+        pageCount = {pageCount}
+        onPageChange= {pageChange}
+        />
       </main>
       );
   }
 
-  
 }
 
 export default App;
