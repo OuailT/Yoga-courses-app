@@ -15,21 +15,23 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [levels, setLevels] = useState([]);
   const [level, setLevel] = useState('');
-  // const [numberPage, setNumberPage] = useEffect(0);
+  const [pageNumber, setPageNumber] = useState(0);
 
   //Paginate react 
   const coursePerPage = 2;
+
   // const PageVisited = numberPage * coursePerPage;
   const pageCount = Math.ceil(yogaCourses.length / coursePerPage);
+  console.log(pageCount);
 
   //Track changes on each numberPage and display the data 
-  // useEffect(()=> {
-  //   setYogaCourses(yogaCourses.slice(numberPage * 2 , (numberPage + 1) * 2))
-  // },[numberPage])
+  useEffect(()=> {
+    setYogaCourses(yogaCourses.slice(pageNumber * 2 , (pageNumber + 1) * 2))
+  },[pageNumber]);
 
   //To the next Page
   const pageChange = ({selected}) => {
-    setYogaCourses(selected);
+    setPageNumber(selected);
   }
 
   //levelChangeHandler 
@@ -80,7 +82,7 @@ function App() {
                 <h2>YOUR PRACTICE REIMAGINED</h2>
             </div>
         <LevelsFilter levels={levels} onChange={levelChangeHandler}/>
-        <YogaCourses yogaCourses= {filterLevels(level)}/>
+        <YogaCourses yogaCourses= {(filterLevels(level)).slice(0, 2)}/>
         <ReactPaginate
         previousLabel = {"Previous"}
         nextLabel = {"Next"}
